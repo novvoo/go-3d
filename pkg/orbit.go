@@ -24,7 +24,7 @@ func NewOrbit(radius float64, color [3]float64) *Orbit {
 func (o *Orbit) Render(renderer *Renderer, t float64) {
 	orbit := CreateTorus(o.Radius, o.Thickness, o.Segments, 4)
 	transform := Identity()
-	transform = transform.Multiply(RotationX(math.Pi / 2))
+	// 不需要旋转，轨道默认就在XY平面上
 	transformedOrbit := orbit.Transform(transform)
 	renderer.DrawMesh(transformedOrbit, o.Color)
 }

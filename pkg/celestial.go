@@ -57,8 +57,8 @@ func (p *Planet) AddRings(colors [][3]float64) *Planet {
 func (p *Planet) GetPosition(t float64) Vector3 {
 	angle := t * p.OrbitSpeed * math.Pi
 	x := p.OrbitRadius * math.Cos(angle)
-	z := p.OrbitRadius * math.Sin(angle)
-	y := 0.0 // 行星在XZ平面上运动，与轨道圈一致
+	y := p.OrbitRadius * math.Sin(angle)
+	z := 0.0 // 行星在XY平面上运动
 	return NewVector3(x, y, z)
 }
 
@@ -105,8 +105,8 @@ func (p *Planet) renderMoon(renderer *Renderer, planetPos Vector3, t float64) {
 	moonAngle := t * 8.0 * math.Pi
 
 	moonX := planetPos.X + moonOrbitRadius*math.Cos(moonAngle)
-	moonZ := planetPos.Z + moonOrbitRadius*math.Sin(moonAngle)
-	moonY := planetPos.Y + math.Sin(moonAngle)*0.1
+	moonY := planetPos.Y + moonOrbitRadius*math.Sin(moonAngle)
+	moonZ := planetPos.Z + math.Sin(moonAngle)*0.1
 
 	moon := CreateSphere(p.Radius*0.3, 10, 10)
 	transform := Identity()
