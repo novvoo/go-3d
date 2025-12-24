@@ -297,9 +297,10 @@ func CreateTorus(majorRadius, minorRadius float64, majorSegments, minorSegments 
 			cosPhi := math.Cos(phi)
 			sinPhi := math.Sin(phi)
 
+			// 修改坐标使圆环在XY平面上（原来是XZ平面）
 			x := (majorRadius + minorRadius*cosPhi) * cosTheta
-			y := minorRadius * sinPhi
-			z := (majorRadius + minorRadius*cosPhi) * sinTheta
+			y := (majorRadius + minorRadius*cosPhi) * sinTheta
+			z := minorRadius * sinPhi
 
 			mesh.AddVertex(NewVector3(x, y, z))
 		}
